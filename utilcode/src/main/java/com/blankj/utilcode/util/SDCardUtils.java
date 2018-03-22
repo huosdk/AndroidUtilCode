@@ -15,7 +15,7 @@ import java.util.List;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/08/11
- *     desc  : SD卡相关工具类
+ *     desc  : utils about sdcard
  * </pre>
  */
 public final class SDCardUtils {
@@ -25,31 +25,30 @@ public final class SDCardUtils {
     }
 
     /**
-     * 判断SD卡是否可用
+     * Return whether sdcard is enabled.
      *
-     * @return true : 可用<br>false : 不可用
+     * @return true : enabled<br>false : disabled
      */
     public static boolean isSDCardEnable() {
         return !getSDCardPaths().isEmpty();
     }
 
     /**
-     * 获取SD卡路径
+     * Return the paths of sdcard.
      *
-     * @param removable true : 外置SD卡<br>false : 内置SD卡
-     * @return SD卡路径
+     * @param removable True to return the paths of removable sdcard, false otherwise.
+     * @return the paths of sdcard
      */
-    @SuppressWarnings("TryWithIdenticalCatches")
-    public static List<String> getSDCardPaths(boolean removable) {
+    public static List<String> getSDCardPaths(final boolean removable) {
         List<String> paths = new ArrayList<>();
-        StorageManager mStorageManager = (StorageManager) Utils.getApp()
-                .getSystemService(Context.STORAGE_SERVICE);
+        StorageManager sm =
+                (StorageManager) Utils.getApp().getSystemService(Context.STORAGE_SERVICE);
         try {
             Class<?> storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
             Method getVolumeList = StorageManager.class.getMethod("getVolumeList");
             Method getPath = storageVolumeClazz.getMethod("getPath");
             Method isRemovable = storageVolumeClazz.getMethod("isRemovable");
-            Object result = getVolumeList.invoke(mStorageManager);
+            Object result = getVolumeList.invoke(sm);
             final int length = Array.getLength(result);
             for (int i = 0; i < length; i++) {
                 Object storageVolumeElement = Array.get(result, i);
@@ -72,11 +71,10 @@ public final class SDCardUtils {
     }
 
     /**
-     * 获取SD卡路径
+     * Return the paths of sdcard.
      *
-     * @return SD卡路径
+     * @return the paths of sdcard
      */
-    @SuppressWarnings("TryWithIdenticalCatches")
     public static List<String> getSDCardPaths() {
         StorageManager storageManager = (StorageManager) Utils.getApp()
                 .getSystemService(Context.STORAGE_SERVICE);

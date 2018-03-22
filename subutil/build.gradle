@@ -1,37 +1,20 @@
 apply plugin: 'com.android.library'
-apply plugin: 'jacoco'
+apply plugin: 'com.blankj.readme.sub'
 
-task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories = files([mainSrc])
-    classDirectories = files([debugTree])
-    executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ])
+readme {
+    readmeFile file('README.md')
+    readmeCnFile file('README-CN.md')
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion compile_sdk_version
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion min_sdk_version
+        versionCode version_code
+        versionName version_name
     }
 
     buildTypes {
-        debug {
-            testCoverageEnabled true
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -42,7 +25,6 @@ android {
         abortOnError false
     }
 
-
     testOptions.unitTests.all {
         testLogging {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
@@ -51,10 +33,9 @@ android {
 }
 
 dependencies {
-    compileOnly "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
-    compileOnly "com.android.support:support-v4:$rootProject.ext.supportVersion"
-    compileOnly "com.android.support:design:$rootProject.ext.supportVersion"
+    compileOnly "com.android.support:appcompat-v7:$support_version"
+    compileOnly "com.android.support:design:$support_version"
 
-    testImplementation "junit:junit:$rootProject.ext.junitVersion"
-    testImplementation "org.robolectric:robolectric:$rootProject.ext.robolectricVersion"
+    testImplementation "junit:junit:$junit_version"
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
 }

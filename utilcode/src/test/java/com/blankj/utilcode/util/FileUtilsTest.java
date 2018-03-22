@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2016/08/19
- *     desc  : FileUtils单元测试
+ *     desc  : test FileUtils
  * </pre>
  */
 public class FileUtilsTest {
@@ -171,6 +171,7 @@ public class FileUtilsTest {
     @Test
     public void getFileLength() throws Exception {
         System.out.println(FileUtils.getFileLength(PATH_FILE + "UTF8.txt"));
+        System.out.println(FileUtils.getFileLength("https://raw.githubusercontent.com/Blankj/AndroidUtilCode/85bc44d1c8adb31027870ea4cb7a931700c80cad/LICENSE"));
     }
 
     @Test

@@ -24,7 +24,7 @@ import java.util.List;
  *     author: Blankj
  *     blog  : http://blankj.com
  *     time  : 2017/06/22
- *     desc  : 文件读写相关工具类
+ *     desc  : utils about file io
  * </pre>
  */
 public final class FileIOUtils {
@@ -38,48 +38,52 @@ public final class FileIOUtils {
     private static int sBufferSize = 8192;
 
     /**
-     * 将输入流写入文件
+     * Write file from input stream.
      *
-     * @param filePath 路径
-     * @param is       输入流
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param is       The input stream.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromIS(final String filePath, final InputStream is) {
         return writeFileFromIS(getFileByPath(filePath), is, false);
     }
 
     /**
-     * 将输入流写入文件
+     * Write file from input stream.
      *
-     * @param filePath 路径
-     * @param is       输入流
-     * @param append   是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param is       The input stream.
+     * @param append   True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromIS(final String filePath, final InputStream is, final boolean append) {
+    public static boolean writeFileFromIS(final String filePath,
+                                          final InputStream is,
+                                          final boolean append) {
         return writeFileFromIS(getFileByPath(filePath), is, append);
     }
 
     /**
-     * 将输入流写入文件
+     * Write file from input stream.
      *
-     * @param file 文件
-     * @param is   输入流
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file The file.
+     * @param is   The input stream.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromIS(final File file, final InputStream is) {
         return writeFileFromIS(file, is, false);
     }
 
     /**
-     * 将输入流写入文件
+     * Write file from input stream.
      *
-     * @param file   文件
-     * @param is     输入流
-     * @param append 是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file   The file.
+     * @param is     The input stream.
+     * @param append True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromIS(final File file, final InputStream is, final boolean append) {
+    public static boolean writeFileFromIS(final File file,
+                                          final InputStream is,
+                                          final boolean append) {
         if (!createOrExistsFile(file) || is == null) return false;
         OutputStream os = null;
         try {
@@ -99,48 +103,52 @@ public final class FileIOUtils {
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by stream.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes) {
         return writeFileFromBytesByStream(getFileByPath(filePath), bytes, false);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by stream.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
-     * @param append   是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByStream(final String filePath, final byte[] bytes, final boolean append) {
+    public static boolean writeFileFromBytesByStream(final String filePath,
+                                                     final byte[] bytes,
+                                                     final boolean append) {
         return writeFileFromBytesByStream(getFileByPath(filePath), bytes, append);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by stream.
      *
-     * @param file  文件
-     * @param bytes 字节数组
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file  The file.
+     * @param bytes The bytes.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes) {
         return writeFileFromBytesByStream(file, bytes, false);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by stream.
      *
-     * @param file   文件
-     * @param bytes  字节数组
-     * @param append 是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file   The file.
+     * @param bytes  The bytes.
+     * @param append True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByStream(final File file, final byte[] bytes, final boolean append) {
+    public static boolean writeFileFromBytesByStream(final File file,
+                                                     final byte[] bytes,
+                                                     final boolean append) {
         if (bytes == null || !createOrExistsFile(file)) return false;
         BufferedOutputStream bos = null;
         try {
@@ -156,52 +164,62 @@ public final class FileIOUtils {
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by channel.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
      * @param isForce  是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(final String filePath,
+                                                      final byte[] bytes,
+                                                      final boolean isForce) {
         return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, false, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by channel.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
-     * @param append   是否追加在文件末
-     * @param isForce  是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
+     * @param isForce  True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByChannel(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(final String filePath,
+                                                      final byte[] bytes,
+                                                      final boolean append,
+                                                      final boolean isForce) {
         return writeFileFromBytesByChannel(getFileByPath(filePath), bytes, append, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by channel.
      *
-     * @param file    文件
-     * @param bytes   字节数组
-     * @param isForce 是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param isForce True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(final File file,
+                                                      final byte[] bytes,
+                                                      final boolean isForce) {
         return writeFileFromBytesByChannel(file, bytes, false, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by channel.
      *
-     * @param file    文件
-     * @param bytes   字节数组
-     * @param append  是否追加在文件末
-     * @param isForce 是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param append  True to append, false otherwise.
+     * @param isForce True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByChannel(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByChannel(final File file,
+                                                      final byte[] bytes,
+                                                      final boolean append,
+                                                      final boolean isForce) {
         if (bytes == null) return false;
         FileChannel fc = null;
         try {
@@ -219,52 +237,62 @@ public final class FileIOUtils {
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by map.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
-     * @param isForce  是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
+     * @param isForce  True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(final String filePath,
+                                                  final byte[] bytes,
+                                                  final boolean isForce) {
         return writeFileFromBytesByMap(filePath, bytes, false, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by map.
      *
-     * @param filePath 文件路径
-     * @param bytes    字节数组
-     * @param append   是否追加在文件末
-     * @param isForce  是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param bytes    The bytes.
+     * @param append   True to append, false otherwise.
+     * @param isForce  True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByMap(final String filePath, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(final String filePath,
+                                                  final byte[] bytes,
+                                                  final boolean append,
+                                                  final boolean isForce) {
         return writeFileFromBytesByMap(getFileByPath(filePath), bytes, append, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by map.
      *
-     * @param file    文件
-     * @param bytes   字节数组
-     * @param isForce 是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param isForce True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(final File file,
+                                                  final byte[] bytes,
+                                                  final boolean isForce) {
         return writeFileFromBytesByMap(file, bytes, false, isForce);
     }
 
     /**
-     * 将字节数组写入文件
+     * Write file from bytes by map.
      *
-     * @param file    文件
-     * @param bytes   字节数组
-     * @param append  是否追加在文件末
-     * @param isForce 是否写入文件
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param bytes   The bytes.
+     * @param append  True to append, false otherwise.
+     * @param isForce True to force write file, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromBytesByMap(final File file, final byte[] bytes, final boolean append, final boolean isForce) {
+    public static boolean writeFileFromBytesByMap(final File file,
+                                                  final byte[] bytes,
+                                                  final boolean append,
+                                                  final boolean isForce) {
         if (bytes == null || !createOrExistsFile(file)) return false;
         FileChannel fc = null;
         try {
@@ -282,48 +310,52 @@ public final class FileIOUtils {
     }
 
     /**
-     * 将字符串写入文件
+     * Write file from string.
      *
-     * @param filePath 文件路径
-     * @param content  写入内容
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param content  The string of content.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromString(final String filePath, final String content) {
         return writeFileFromString(getFileByPath(filePath), content, false);
     }
 
     /**
-     * 将字符串写入文件
+     * Write file from string.
      *
-     * @param filePath 文件路径
-     * @param content  写入内容
-     * @param append   是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param filePath The path of file.
+     * @param content  The string of content.
+     * @param append   True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
+    public static boolean writeFileFromString(final String filePath,
+                                              final String content,
+                                              final boolean append) {
         return writeFileFromString(getFileByPath(filePath), content, append);
     }
 
     /**
-     * 将字符串写入文件
+     * Write file from string.
      *
-     * @param file    文件
-     * @param content 写入内容
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param content The string of content.
+     * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean writeFileFromString(final File file, final String content) {
         return writeFileFromString(file, content, false);
     }
 
     /**
-     * 将字符串写入文件
+     * Write file from string.
      *
-     * @param file    文件
-     * @param content 写入内容
-     * @param append  是否追加在文件末
-     * @return {@code true}: 写入成功<br>{@code false}: 写入失败
+     * @param file    The file.
+     * @param content The string of content.
+     * @param append  True to append, false otherwise.
+     * @return {@code true}: success<br>{@code false}: fail
      */
-    public static boolean writeFileFromString(final File file, final String content, final boolean append) {
+    public static boolean writeFileFromString(final File file,
+                                              final String content,
+                                              final boolean append) {
         if (file == null || content == null) return false;
         if (!createOrExistsFile(file)) return false;
         BufferedWriter bw = null;
@@ -344,94 +376,100 @@ public final class FileIOUtils {
     ///////////////////////////////////////////////////////////////////////////
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param filePath 文件路径
-     * @return 字符串链表中
+     * @param filePath The path of file.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final String filePath) {
         return readFile2List(getFileByPath(filePath), null);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param filePath    文件路径
-     * @param charsetName 编码格式
-     * @return 字符串链表中
+     * @param filePath    The path of file.
+     * @param charsetName The name of charset.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final String filePath, final String charsetName) {
         return readFile2List(getFileByPath(filePath), charsetName);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param file 文件
-     * @return 字符串链表中
+     * @param file The file.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final File file) {
         return readFile2List(file, 0, 0x7FFFFFFF, null);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param file        文件
-     * @param charsetName 编码格式
-     * @return 字符串链表中
+     * @param file        The file.
+     * @param charsetName The name of charset.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final File file, final String charsetName) {
         return readFile2List(file, 0, 0x7FFFFFFF, charsetName);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param filePath 文件路径
-     * @param st       需要读取的开始行数
-     * @param end      需要读取的结束行数
-     * @return 字符串链表中
+     * @param filePath The path of file.
+     * @param st       The line's index of start.
+     * @param end      The line's index of end.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final String filePath, final int st, final int end) {
         return readFile2List(getFileByPath(filePath), st, end, null);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param filePath    文件路径
-     * @param st          需要读取的开始行数
-     * @param end         需要读取的结束行数
-     * @param charsetName 编码格式
-     * @return 字符串链表中
+     * @param filePath    The path of file.
+     * @param st          The line's index of start.
+     * @param end         The line's index of end.
+     * @param charsetName The name of charset.
+     * @return the lines in file
      */
-    public static List<String> readFile2List(final String filePath, final int st, final int end, final String charsetName) {
+    public static List<String> readFile2List(final String filePath,
+                                             final int st,
+                                             final int end,
+                                             final String charsetName) {
         return readFile2List(getFileByPath(filePath), st, end, charsetName);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param file 文件
-     * @param st   需要读取的开始行数
-     * @param end  需要读取的结束行数
-     * @return 字符串链表中
+     * @param file The file.
+     * @param st   The line's index of start.
+     * @param end  The line's index of end.
+     * @return the lines in file
      */
     public static List<String> readFile2List(final File file, final int st, final int end) {
         return readFile2List(file, st, end, null);
     }
 
     /**
-     * 读取文件到字符串链表中
+     * Return the lines in file.
      *
-     * @param file        文件
-     * @param st          需要读取的开始行数
-     * @param end         需要读取的结束行数
-     * @param charsetName 编码格式
-     * @return 字符串链表中
+     * @param file        The file.
+     * @param st          The line's index of start.
+     * @param end         The line's index of end.
+     * @param charsetName The name of charset.
+     * @return the lines in file
      */
-    public static List<String> readFile2List(final File file, final int st, final int end, final String charsetName) {
+    public static List<String> readFile2List(final File file,
+                                             final int st,
+                                             final int end,
+                                             final String charsetName) {
         if (!isFileExists(file)) return null;
         if (st > end) return null;
         BufferedReader reader = null;
@@ -442,7 +480,9 @@ public final class FileIOUtils {
             if (isSpace(charsetName)) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+                reader = new BufferedReader(
+                        new InputStreamReader(new FileInputStream(file), charsetName)
+                );
             }
             while ((line = reader.readLine()) != null) {
                 if (curLine > end) break;
@@ -459,42 +499,42 @@ public final class FileIOUtils {
     }
 
     /**
-     * 读取文件到字符串中
+     * Return the string in file.
      *
-     * @param filePath 文件路径
-     * @return 字符串
+     * @param filePath The path of file.
+     * @return the string in file
      */
     public static String readFile2String(final String filePath) {
         return readFile2String(getFileByPath(filePath), null);
     }
 
     /**
-     * 读取文件到字符串中
+     * Return the string in file.
      *
-     * @param filePath    文件路径
-     * @param charsetName 编码格式
-     * @return 字符串
+     * @param filePath    The path of file.
+     * @param charsetName The name of charset.
+     * @return the string in file
      */
     public static String readFile2String(final String filePath, final String charsetName) {
         return readFile2String(getFileByPath(filePath), charsetName);
     }
 
     /**
-     * 读取文件到字符串中
+     * Return the string in file.
      *
-     * @param file 文件
-     * @return 字符串
+     * @param file The file.
+     * @return the string in file
      */
     public static String readFile2String(final File file) {
         return readFile2String(file, null);
     }
 
     /**
-     * 读取文件到字符串中
+     * Return the string in file.
      *
-     * @param file        文件
-     * @param charsetName 编码格式
-     * @return 字符串
+     * @param file        The file.
+     * @param charsetName The name of charset.
+     * @return the string in file
      */
     public static String readFile2String(final File file, final String charsetName) {
         if (!isFileExists(file)) return null;
@@ -504,7 +544,9 @@ public final class FileIOUtils {
             if (isSpace(charsetName)) {
                 reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             } else {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName));
+                reader = new BufferedReader(
+                        new InputStreamReader(new FileInputStream(file), charsetName)
+                );
             }
             String line;
             if ((line = reader.readLine()) != null) {
@@ -523,20 +565,20 @@ public final class FileIOUtils {
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by stream.
      *
-     * @param filePath 文件路径
-     * @return 字符数组
+     * @param filePath The path of file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByStream(final String filePath) {
         return readFile2BytesByStream(getFileByPath(filePath));
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by stream.
      *
-     * @param file 文件
-     * @return 字符数组
+     * @param file The file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByStream(final File file) {
         if (!isFileExists(file)) return null;
@@ -560,20 +602,20 @@ public final class FileIOUtils {
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by channel.
      *
-     * @param filePath 文件路径
-     * @return 字符数组
+     * @param filePath The path of file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByChannel(final String filePath) {
         return readFile2BytesByChannel(getFileByPath(filePath));
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by channel.
      *
-     * @param file 文件
-     * @return 字符数组
+     * @param file The file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByChannel(final File file) {
         if (!isFileExists(file)) return null;
@@ -594,20 +636,20 @@ public final class FileIOUtils {
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by map.
      *
-     * @param filePath 文件路径
-     * @return 字符数组
+     * @param filePath The path of file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByMap(final String filePath) {
         return readFile2BytesByMap(getFileByPath(filePath));
     }
 
     /**
-     * 读取文件到字节数组中
+     * Return the bytes in file by map.
      *
-     * @param file 文件
-     * @return 字符数组
+     * @param file The file.
+     * @return the bytes in file
      */
     public static byte[] readFile2BytesByMap(final File file) {
         if (!isFileExists(file)) return null;
@@ -628,9 +670,10 @@ public final class FileIOUtils {
     }
 
     /**
-     * 设置缓冲区尺寸
+     * Set the buffer's size.
+     * <p>Default size equals 8192 bytes.</p>
      *
-     * @param bufferSize 缓冲区大小
+     * @param bufferSize The buffer's size.
      */
     public static void setBufferSize(final int bufferSize) {
         sBufferSize = bufferSize;
