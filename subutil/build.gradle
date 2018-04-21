@@ -1,10 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.blankj.readme.sub'
-
-readme {
-    readmeFile file('README.md')
-    readmeCnFile file('README-CN.md')
-}
+apply from: 'readme.gradle'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -38,4 +33,6 @@ dependencies {
 
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"
+
+    implementation "com.google.code.gson:gson:$gson_version"
 }

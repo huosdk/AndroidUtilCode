@@ -2,13 +2,13 @@
 
 Gradle:
 ```groovy
-compile 'com.blankj:utilcode:1.13.5'
+implementation 'com.blankj:utilcode:1.13.15'
 ```
 
 
 ## How to use
 
-```
+```java
 // init it in the function of onCreate in ur Application
 Utils.init(application);
 ```
@@ -54,6 +54,7 @@ isAppDebug
 isAppSystem
 isAppForeground
 launchApp
+relaunchApp
 launchAppDetailsSettings
 exitApp
 getAppIcon
@@ -85,6 +86,8 @@ setNotificationBarVisibility
 getNavBarHeight
 setNavBarVisibility
 setNavBarImmersive
+setNavBarColor
+getNavBarColor
 isNavBarVisible
 ```
 
@@ -159,6 +162,7 @@ getAndroidID
 getMacAddress
 getManufacturer
 getModel
+getABIs
 shutdown
 reboot
 reboot2Recovery
@@ -346,9 +350,12 @@ Config.setLog2FileSwitch
 Config.setDir
 Config.setFilePrefix
 Config.setBorderSwitch
+Config.setSingleTagSwitch
 Config.setConsoleFilter
 Config.setFileFilter
 Config.setStackDeep
+Config.setStackOffset
+log
 v
 vTag
 d
@@ -430,6 +437,8 @@ sendSmsSilent
 getForegroundProcessName
 killAllBackgroundProcesses
 killBackgroundProcesses
+isMainProcess
+getCurrentProcessName
 ```
 
 * ### About Reflect -> [ReflectUtils.java][reflect.java] -> [Test][reflect.test]
@@ -636,7 +645,8 @@ getZodiac
 setGravity
 setBgColor
 setBgResource
-setMessageColor
+setMsgColor
+setMsgTextSize
 showShort
 showLong
 showCustomShort

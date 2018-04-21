@@ -2,8 +2,7 @@ package com.blankj.utilcode.util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -39,10 +38,34 @@ public final class AppUtils {
      * <p>Target APIs greater than 25 must hold
      * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
      *
+     * @param filePath The path of file.
+     */
+    public static void installApp(final String filePath) {
+        installApp(getFileByPath(filePath));
+    }
+
+    /**
+     * Install the app.
+     * <p>Target APIs greater than 25 must hold
+     * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
+     *
+     * @param file The file.
+     */
+    public static void installApp(final File file) {
+        if (!isFileExists(file)) return;
+        Utils.getApp().startActivity(IntentUtils.getInstallAppIntent(file, true));
+    }
+
+    /**
+     * Install the app.
+     * <p>Target APIs greater than 25 must hold
+     * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
+     *
      * @param filePath  The path of file.
      * @param authority Target APIs greater than 23 must hold the authority of a FileProvider
      *                  defined in a {@code <provider>} element in your app's manifest.
      */
+    @Deprecated
     public static void installApp(final String filePath, final String authority) {
         installApp(getFileByPath(filePath), authority);
     }
@@ -56,9 +79,43 @@ public final class AppUtils {
      * @param authority Target APIs greater than 23 must hold the authority of a FileProvider
      *                  defined in a {@code <provider>} element in your app's manifest.
      */
+    @Deprecated
     public static void installApp(final File file, final String authority) {
         if (!isFileExists(file)) return;
         Utils.getApp().startActivity(IntentUtils.getInstallAppIntent(file, authority, true));
+    }
+
+    /**
+     * Install the app.
+     * <p>Target APIs greater than 25 must hold
+     * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
+     *
+     * @param activity    The activity.
+     * @param filePath    The path of file.
+     * @param requestCode If &gt;= 0, this code will be returned in
+     *                    onActivityResult() when the activity exits.
+     */
+    public static void installApp(final Activity activity,
+                                  final String filePath,
+                                  final int requestCode) {
+        installApp(activity, getFileByPath(filePath), requestCode);
+    }
+
+    /**
+     * Install the app.
+     * <p>Target APIs greater than 25 must hold
+     * {@code <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />}</p>
+     *
+     * @param activity    The activity.
+     * @param file        The file.
+     * @param requestCode If &gt;= 0, this code will be returned in
+     *                    onActivityResult() when the activity exits.
+     */
+    public static void installApp(final Activity activity,
+                                  final File file,
+                                  final int requestCode) {
+        if (!isFileExists(file)) return;
+        activity.startActivityForResult(IntentUtils.getInstallAppIntent(file), requestCode);
     }
 
     /**
@@ -73,6 +130,7 @@ public final class AppUtils {
      * @param requestCode If &gt;= 0, this code will be returned in
      *                    onActivityResult() when the activity exits.
      */
+    @Deprecated
     public static void installApp(final Activity activity,
                                   final String filePath,
                                   final String authority,
@@ -92,6 +150,7 @@ public final class AppUtils {
      * @param requestCode If &gt;= 0, this code will be returned in
      *                    onActivityResult() when the activity exits.
      */
+    @Deprecated
     public static void installApp(final Activity activity,
                                   final File file,
                                   final String authority,
@@ -132,11 +191,11 @@ public final class AppUtils {
      * {@code <uses-permission android:name="android.permission.INSTALL_PACKAGES" />}</p>
      *
      * @param filePath The path of file.
-     * @param params   The params of installation.
+     * @param params   The params of installation(e.g.,<code>-r</code>, <code>-s</code>).
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean installAppSilent(final String filePath, final String params) {
-        return installAppSilent(getFileByPath(filePath), null);
+        return installAppSilent(getFileByPath(filePath), params);
     }
 
     /**
@@ -145,13 +204,13 @@ public final class AppUtils {
      * {@code <uses-permission android:name="android.permission.INSTALL_PACKAGES" />}</p>
      *
      * @param file   The file.
-     * @param params The params of installation.
+     * @param params The params of installation(e.g.,<code>-r</code>, <code>-s</code>).
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean installAppSilent(final File file, final String params) {
         if (!isFileExists(file)) return false;
         boolean isRoot = isDeviceRooted();
-        String filePath = file.getAbsolutePath();
+        String filePath = '"' + file.getAbsolutePath() + '"';
         String command = "LD_LIBRARY_PATH=/vendor/lib*:/system/lib* pm install " +
                 (params == null ? "" : params + " ")
                 + filePath;
@@ -332,17 +391,7 @@ public final class AppUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isAppForeground() {
-        ActivityManager am =
-                (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
-        if (am == null) return false;
-        List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
-        if (info == null || info.size() == 0) return false;
-        for (ActivityManager.RunningAppProcessInfo aInfo : info) {
-            if (aInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
-                return aInfo.processName.equals(Utils.getApp().getPackageName());
-            }
-        }
-        return false;
+        return Utils.isAppForeground();
     }
 
     /**
@@ -380,6 +429,19 @@ public final class AppUtils {
                                  final int requestCode) {
         if (isSpace(packageName)) return;
         activity.startActivityForResult(IntentUtils.getLaunchAppIntent(packageName), requestCode);
+    }
+
+    /**
+     * Relaunch the application.
+     */
+    public static void relaunchApp() {
+        PackageManager packageManager = Utils.getApp().getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage(Utils.getApp().getPackageName());
+        if (intent == null) return;
+        ComponentName componentName = intent.getComponent();
+        Intent mainIntent = Intent.makeRestartActivityTask(componentName);
+        Utils.getApp().startActivity(mainIntent);
+        System.exit(0);
     }
 
     /**

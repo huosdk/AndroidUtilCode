@@ -2,13 +2,13 @@
 
 Gradle:
 ```groovy
-compile 'com.blankj:utilcode:1.13.5'
+implementation 'com.blankj:utilcode:1.13.15'
 ```
 
 
 ## How to use
 
-```
+```java
 // init it in the function of onCreate in ur Application
 Utils.init(application);
 ```
@@ -54,6 +54,7 @@ isAppDebug              : 判断 App 是否是 Debug 版本
 isAppSystem             : 判断 App 是否是系统应用
 isAppForeground         : 判断 App 是否处于前台
 launchApp               : 打开 App
+relaunchApp             : 重启 App
 launchAppDetailsSettings: 打开 App 具体设置
 exitApp                 : 关闭应用
 getAppIcon              : 获取 App 图标
@@ -85,6 +86,8 @@ setNotificationBarVisibility         : 设置通知栏是否可见
 getNavBarHeight                      : 获取导航栏高度
 setNavBarVisibility                  : 设置导航栏是否可见
 setNavBarImmersive                   : 设置导航栏沉浸式
+setNavBarColor                       : 设置导航栏颜色
+getNavBarColor                       : 获取导航栏颜色
 isNavBarVisible                      : 判断导航栏是否可见
 ```
 
@@ -159,6 +162,7 @@ getAndroidID     : 获取设备 AndroidID
 getMacAddress    : 获取设备 MAC 地址
 getManufacturer  : 获取设备厂商
 getModel         : 获取设备型号
+getABIs          : 获取设备 ABIs
 shutdown         : 关机
 reboot           : 重启
 reboot2Recovery  : 重启到 recovery
@@ -337,33 +341,36 @@ clickBlankArea2HideSoftInput    : 点击屏幕空白区域隐藏软键盘
 
 * ### 日志相关 -> [LogUtils.java][log.java] -> [Demo][log.demo]
 ```
-getConfig               : 获取 log 配置
-Config.setLogSwitch     : 设置 log 总开关
-Config.setConsoleSwitch : 设置 log 控制台开关
-Config.setGlobalTag     : 设置 log 全局 tag
-Config.setLogHeadSwitch : 设置 log 头部信息开关
-Config.setLog2FileSwitch: 设置 log 文件开关
-Config.setDir           : 设置 log 文件存储目录
-Config.setFilePrefix    : 设置 log 文件前缀
-Config.setBorderSwitch  : 设置 log 边框开关
-Config.setConsoleFilter : 设置 log 控制台过滤器
-Config.setFileFilter    : 设置 log 文件过滤器
-Config.setStackDeep     : 设置 log 栈深度
-v                       : tag 为类名的 Verbose 日志
-vTag                    : 自定义 tag 的 Verbose 日志
-d                       : tag 为类名的 Debug 日志
-dTag                    : 自定义 tag 的 Debug 日志
-i                       : tag 为类名的 Info 日志
-iTag                    : 自定义 tag 的 Info 日志
-w                       : tag 为类名的 Warn 日志
-wTag                    : 自定义 tag 的 Warn 日志
-e                       : tag 为类名的 Error 日志
-eTag                    : 自定义 tag 的 Error 日志
-a                       : tag 为类名的 Assert 日志
-aTag                    : 自定义 tag 的 Assert 日志
-file                    : log 到文件
-json                    : log 字符串之 json
-xml                     : log 字符串之 xml
+getConfig                : 获取 log 配置
+Config.setLogSwitch      : 设置 log 总开关
+Config.setConsoleSwitch  : 设置 log 控制台开关
+Config.setGlobalTag      : 设置 log 全局 tag
+Config.setLogHeadSwitch  : 设置 log 头部信息开关
+Config.setLog2FileSwitch : 设置 log 文件开关
+Config.setDir            : 设置 log 文件存储目录
+Config.setFilePrefix     : 设置 log 文件前缀
+Config.setBorderSwitch   : 设置 log 边框开关
+Config.setSingleTagSwitch: 设置 log 单一 tag 开关（为美化 AS 3.1 的 Logcat）
+Config.setConsoleFilter  : 设置 log 控制台过滤器
+Config.setFileFilter     : 设置 log 文件过滤器
+Config.setStackDeep      : 设置 log 栈深度
+Config.setStackOffset    : 设置 log 栈偏移
+log                      : 自定义 tag 的 type 日志
+v                        : tag 为类名的 Verbose 日志
+vTag                     : 自定义 tag 的 Verbose 日志
+d                        : tag 为类名的 Debug 日志
+dTag                     : 自定义 tag 的 Debug 日志
+i                        : tag 为类名的 Info 日志
+iTag                     : 自定义 tag 的 Info 日志
+w                        : tag 为类名的 Warn 日志
+wTag                     : 自定义 tag 的 Warn 日志
+e                        : tag 为类名的 Error 日志
+eTag                     : 自定义 tag 的 Error 日志
+a                        : tag 为类名的 Assert 日志
+aTag                     : 自定义 tag 的 Assert 日志
+file                     : log 到文件
+json                     : log 字符串之 json
+xml                      : log 字符串之 xml
 ```
 
 * ### 网络相关 -> [NetworkUtils.java][network.java] -> [Demo][network.demo]
@@ -430,6 +437,8 @@ sendSmsSilent      : 发送短信
 getForegroundProcessName  : 获取前台线程包名
 killAllBackgroundProcesses: 杀死所有的后台服务进程
 killBackgroundProcesses   : 杀死后台服务进程
+isMainProcess             : 判断是否运行在主进程
+getCurrentProcessName     : 获取当前进程名称
 ```
 
 * ### 反射相关 -> [ReflectUtils.java][reflect.java] -> [Test][reflect.test]
@@ -636,7 +645,8 @@ getZodiac               : 获取星座
 setGravity     : 设置吐司位置
 setBgColor     : 设置背景颜色
 setBgResource  : 设置背景资源
-setMessageColor: 设置消息颜色
+setMsgColor    : 设置消息颜色
+setMsgTextSize : 设置消息字体大小
 showShort      : 显示短时吐司
 showLong       : 显示长时吐司
 showCustomShort: 显示短时自定义吐司
