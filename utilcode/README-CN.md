@@ -2,7 +2,7 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.13.15'
+implementation 'com.blankj:utilcode:1.14.0'
 ```
 
 
@@ -16,11 +16,7 @@ Utils.init(application);
 
 ## Proguard
 
-```
--keep class com.blankj.utilcode.** { *; }
--keepclassmembers class com.blankj.utilcode.** { *; }
--dontwarn com.blankj.utilcode.**
-```
+U needn't do anything, because I add `consumerProguardFiles 'proguard-rules.pro'` in build.gradle.
 
 
 ## APIs
@@ -202,6 +198,8 @@ encrypt3DES, encrypt3DES2HexString, encrypt3DES2Base64: 3DES 加密
 decrypt3DES, decryptHexString3DES, decryptBase64_3DES : 3DES 解密
 encryptAES, encryptAES2HexString, encryptAES2Base64   : AES 加密
 decryptAES, decryptHexStringAES, decryptBase64AES     : AES 解密
+encryptRSA, encryptRSA2HexString, encryptRSA2Base64   : RSA 加密
+decryptRSA, decryptHexStringRSA, decryptBase64RSA     : RSA 解密
 ```
 
 * ### 文件相关 -> [FileIOUtils.java][fileio.java] -> [Test][fileio.test]
@@ -491,8 +489,10 @@ isTablet           : 判断是否是平板
 
 * ### SD 卡相关 -> [SDCardUtils.java][sdcard.java] -> [Demo][sdcard.demo]
 ```
-isSDCardEnable: 判断 SD 卡是否可用
-getSDCardPaths: 获取 SD 卡路径
+isSDCardEnableByEnvironment: 根据 Environment 判断 SD 卡是否可用
+getSDCardPathByEnvironment : 根据 Environment 获取 SD 卡路径
+isSDCardEnable             : 判断 SD 卡是否可用
+getSDCardPaths             : 获取 SD 卡路径
 ```
 
 * ### 服务相关 -> [ServiceUtils.java][service.java]
@@ -633,9 +633,7 @@ isToday                 : 判断是否今天
 isLeapYear              : 判断是否闰年
 getChineseWeek          : 获取中式星期
 getUSWeek               : 获取美式式星期
-getWeekIndex            : 获取星期索引
-getWeekOfMonth          : 获取月份中的第几周
-getWeekOfYear           : 获取年份中的第几周
+getValueByCalendarField : 根据日历字段获取值
 getChineseZodiac        : 获取生肖
 getZodiac               : 获取星座
 ```
@@ -652,6 +650,11 @@ showLong       : 显示长时吐司
 showCustomShort: 显示短时自定义吐司
 showCustomLong : 显示长时自定义吐司
 cancel         : 取消吐司显示
+```
+
+* ### URI 相关 -> [UriUtils.java][uri.java]
+```
+getUriForFile: 获取文件 URI
 ```
 
 * ### 压缩相关 -> [ZipUtils.java][zip.java] -> [Test][zip.test]
@@ -770,6 +773,8 @@ getComments       : 获取压缩文件中的注释链表
 
 [toast.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ToastUtils.java
 [toast.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/toast/ToastActivity.java
+
+[uri.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/UriUtils.java
 
 [zip.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ZipUtils.java
 [zip.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/ZipUtilsTest.java

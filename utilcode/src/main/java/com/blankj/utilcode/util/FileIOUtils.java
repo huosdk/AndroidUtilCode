@@ -98,7 +98,18 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(is, os);
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -159,7 +170,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(bos);
+            try {
+                if (bos != null) {
+                    bos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -232,7 +249,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            try {
+                if (fc != null) {
+                    fc.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -305,7 +328,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(fc);
+            try {
+                if (fc != null) {
+                    fc.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -367,7 +396,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return false;
         } finally {
-            CloseUtils.closeIO(bw);
+            try {
+                if (bw != null) {
+                    bw.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -494,7 +529,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -560,7 +601,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(reader);
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -597,7 +644,20 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fis, os);
+            try {
+                if (fis != null) {
+                    fis.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (os != null) {
+                    os.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -631,7 +691,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            try {
+                if (fc != null) {
+                    fc.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -665,7 +731,13 @@ public final class FileIOUtils {
             e.printStackTrace();
             return null;
         } finally {
-            CloseUtils.closeIO(fc);
+            try {
+                if (fc != null) {
+                    fc.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
