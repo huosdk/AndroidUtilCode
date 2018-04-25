@@ -1,4 +1,4 @@
-include ':app',
-        ':buildSrc',
-        ':subutil',
+include ':subutil',
+//        ':buildSrc',
+//        ':app',
         ':utilcode'

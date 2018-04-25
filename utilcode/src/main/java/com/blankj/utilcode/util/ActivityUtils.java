@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.util.Pair;
+import android.util.Pair;
 import android.view.View;
+
+import com.blankj.utilcode.extension.ExActivityOptionsCompat;
 
 import java.util.List;
 
@@ -1214,6 +1216,6 @@ public final class ActivityUtils {
         for (int i = 0; i < len; i++) {
             pairs[i] = Pair.create(sharedElements[i], sharedElements[i].getTransitionName());
         }
-        return ActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
+        return ExActivityOptionsCompat.makeSceneTransitionAnimation(activity, pairs).toBundle();
     }
 }

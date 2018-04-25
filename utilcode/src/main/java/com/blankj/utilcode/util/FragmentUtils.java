@@ -223,7 +223,7 @@ public final class FragmentUtils {
                            @NonNull final View... sharedElements) {
         FragmentTransaction ft = fm.beginTransaction();
         putArgs(add, new Args(containerId, false, isAddStack));
-        addSharedElement(ft, sharedElements);
+//        addSharedElement(ft, sharedElements);
         operate(TYPE_ADD_FRAGMENT, fm, ft, null, add);
     }
 
@@ -687,7 +687,7 @@ public final class FragmentUtils {
                                final View... sharedElements) {
         FragmentTransaction ft = fm.beginTransaction();
         putArgs(fragment, new Args(containerId, false, isAddStack));
-        addSharedElement(ft, sharedElements);
+//        addSharedElement(ft, sharedElements);
         operate(TYPE_REPLACE_FRAGMENT, fm, ft, null, fragment);
     }
 
@@ -920,14 +920,14 @@ public final class FragmentUtils {
         ft.setCustomAnimations(enter, exit, popEnter, popExit);
     }
 
-    private static void addSharedElement(final FragmentTransaction ft,
-                                         final View... views) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            for (View view : views) {
-                ft.addSharedElement(view, view.getTransitionName());
-            }
-        }
-    }
+//    private static void addSharedElement(final FragmentTransaction ft,
+//                                         final View... views) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            for (View view : views) {
+//                ft.addSharedElement(view, view.getTransitionName());
+//            }
+//        }
+//    }
 
     /**
      * Return the top fragment.
@@ -1170,7 +1170,8 @@ public final class FragmentUtils {
      * @param background The background.
      */
     public static void setBackground(@NonNull final Fragment fragment, final Drawable background) {
-        ViewCompat.setBackground(fragment.getView(), background);
+        fragment.getView().setBackgroundDrawable(background);
+//        ViewCompat.setBackground(fragment.getView(), background);
     }
 
     /**
