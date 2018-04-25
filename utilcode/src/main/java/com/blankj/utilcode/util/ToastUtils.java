@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.ColorInt;
@@ -242,8 +243,11 @@ public final class ToastUtils {
                 final TextView tvMessage = toast.getView().findViewById(android.R.id.message);
                 int msgColor = tvMessage.getCurrentTextColor();
                 //it solve the font of toast
-                tvMessage.setTextAppearance(tvMessage.getContext(), android.R.style.TextAppearance);
-//                TextViewCompat.setTextAppearance(tvMessage, android.R.style.TextAppearance);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    tvMessage.setTextAppearance(android.R.style.TextAppearance);
+                } else {
+                    tvMessage.setTextAppearance(tvMessage.getContext(), android.R.style.TextAppearance);
+                }
                 if (sMsgColor != COLOR_DEFAULT) {
                     tvMessage.setTextColor(sMsgColor);
                 } else {
@@ -291,7 +295,11 @@ public final class ToastUtils {
                         new PorterDuffColorFilter(sBgColor, PorterDuff.Mode.SRC_IN)
                 );
             } else {
-                toastView.setBackgroundDrawable(new ColorDrawable(sBgColor));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    toastView.setBackground(new ColorDrawable(sBgColor));
+                } else {
+                    toastView.setBackgroundDrawable(new ColorDrawable(sBgColor));
+                }
             }
         }
     }

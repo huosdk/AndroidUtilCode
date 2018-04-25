@@ -807,7 +807,13 @@ public final class CacheUtils {
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                CloseUtils.closeIO(fc);
+                try {
+                    if (fc != null) {
+                        fc.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -824,7 +830,13 @@ public final class CacheUtils {
                 e.printStackTrace();
                 return null;
             } finally {
-                CloseUtils.closeIO(fc);
+                try {
+                    if (fc != null) {
+                        fc.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -900,7 +912,13 @@ public final class CacheUtils {
                 e.printStackTrace();
                 return null;
             } finally {
-                CloseUtils.closeIO(oos);
+                try {
+                    if (oos != null) {
+                        oos.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -914,7 +932,13 @@ public final class CacheUtils {
                 e.printStackTrace();
                 return null;
             } finally {
-                CloseUtils.closeIO(ois);
+                try {
+                    if (ois != null) {
+                        ois.close();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
