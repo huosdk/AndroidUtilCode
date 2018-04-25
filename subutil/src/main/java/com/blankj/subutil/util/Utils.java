@@ -39,7 +39,7 @@ public final class Utils {
      *
      * @param context context
      */
-    public static void init(@NonNull final Context context) {
+    public static void init( final Context context) {
         init((Application) context.getApplicationContext());
     }
 
@@ -49,7 +49,7 @@ public final class Utils {
      *
      * @param app application
      */
-    public static void init(@NonNull final Application app) {
+    public static void init( final Application app) {
         Utils.sApplication = app;
     }
 

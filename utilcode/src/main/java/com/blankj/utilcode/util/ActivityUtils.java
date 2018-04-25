@@ -11,7 +11,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.AnimRes;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Pair;
 import android.view.View;
 
@@ -1202,7 +1201,8 @@ public final class ActivityUtils {
     private static Bundle getOptionsBundle(final Context context,
                                            final int enterAnim,
                                            final int exitAnim) {
-        return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
+//        return ActivityOptionsCompat.makeCustomAnimation(context, enterAnim, exitAnim).toBundle();
+        return null;
     }
 
     private static Bundle getOptionsBundle(final Activity activity,

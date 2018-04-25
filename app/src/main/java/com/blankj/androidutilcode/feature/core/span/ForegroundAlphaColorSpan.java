@@ -11,7 +11,7 @@ public class ForegroundAlphaColorSpan extends CharacterStyle
 
     private int mColor;
 
-    public ForegroundAlphaColorSpan(@ColorInt int color) {
+    public ForegroundAlphaColorSpan( int color) {
         mColor = color;
     }
 

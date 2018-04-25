@@ -91,7 +91,7 @@ public final class BrightnessUtils {
      *
      * @param brightness 亮度值
      */
-    public static boolean setBrightness(@IntRange(from = 0, to = 255) final int brightness) {
+    public static boolean setBrightness(final int brightness) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
                 && !Settings.System.canWrite(Utils.getApp())) {
             Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
@@ -112,8 +112,8 @@ public final class BrightnessUtils {
      * @param window     窗口
      * @param brightness 亮度值
      */
-    public static void setWindowBrightness(@NonNull final Window window,
-                                           @IntRange(from = 0, to = 255) final int brightness) {
+    public static void setWindowBrightness( final Window window,
+                                           final int brightness) {
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.screenBrightness = brightness / 255f;
         window.setAttributes(lp);

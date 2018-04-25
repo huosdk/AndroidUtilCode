@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
-import android.support.v4.util.SimpleArrayMap;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,7 +21,7 @@ import java.util.Set;
 @SuppressLint("ApplySharedPref")
 public final class SPUtils {
 
-    private static SimpleArrayMap<String, SPUtils> SP_UTILS_MAP = new SimpleArrayMap<>();
+    private static Map<String, SPUtils> SP_UTILS_MAP = new HashMap();
     private SharedPreferences sp;
 
     /**

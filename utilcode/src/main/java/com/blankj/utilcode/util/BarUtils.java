@@ -11,7 +11,6 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.annotation.RequiresPermission;
-import android.support.v4.widget.DrawerLayout;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -298,100 +297,100 @@ public final class BarUtils {
         layoutParams.height = BarUtils.getStatusBarHeight();
         fakeStatusBar.setBackgroundColor(Color.argb(alpha, 0, 0, 0));
     }
+//
+//    /**
+//     * Set the status bar's color for DrawerLayout.
+//     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
+//     *
+//     * @param activity      The activity.
+//     * @param drawer        The DrawLayout.
+//     * @param fakeStatusBar The fake status bar view.
+//     * @param color         The status bar's color.
+//     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
+//     */
+//    public static void setStatusBarColor4Drawer(@NonNull final Activity activity,
+//                                                @NonNull final DrawerLayout drawer,
+//                                                @NonNull final View fakeStatusBar,
+//                                                @ColorInt final int color,
+//                                                final boolean isTop) {
+//        setStatusBarColor4Drawer(activity, drawer, fakeStatusBar, color, DEFAULT_ALPHA, isTop);
+//    }
 
-    /**
-     * Set the status bar's color for DrawerLayout.
-     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
-     *
-     * @param activity      The activity.
-     * @param drawer        The DrawLayout.
-     * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
-     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
-     */
-    public static void setStatusBarColor4Drawer(@NonNull final Activity activity,
-                                                @NonNull final DrawerLayout drawer,
-                                                @NonNull final View fakeStatusBar,
-                                                @ColorInt final int color,
-                                                final boolean isTop) {
-        setStatusBarColor4Drawer(activity, drawer, fakeStatusBar, color, DEFAULT_ALPHA, isTop);
-    }
+//    /**
+//     * Set the status bar's color for DrawerLayout.
+//     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
+//     *
+//     * @param activity      The activity.
+//     * @param drawer        The DrawLayout.
+//     * @param fakeStatusBar The fake status bar view.
+//     * @param color         The status bar's color.
+//     * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
+//     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
+//     */
+//    public static void setStatusBarColor4Drawer(@NonNull final Activity activity,
+//                                                @NonNull final DrawerLayout drawer,
+//                                                @NonNull final View fakeStatusBar,
+//                                                @ColorInt final int color,
+//                                                @IntRange(from = 0, to = 255) final int alpha,
+//                                                final boolean isTop) {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+//        drawer.setFitsSystemWindows(false);
+//        transparentStatusBar(activity);
+//        setStatusBarColor(fakeStatusBar, color, isTop ? alpha : 0);
+//        for (int i = 0, len = drawer.getChildCount(); i < len; i++) {
+//            drawer.getChildAt(i).setFitsSystemWindows(false);
+//        }
+//        if (isTop) {
+//            hideAlphaView(activity);
+//        } else {
+//            addStatusBarAlpha(activity, alpha, false);
+//        }
+//    }
 
-    /**
-     * Set the status bar's color for DrawerLayout.
-     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
-     *
-     * @param activity      The activity.
-     * @param drawer        The DrawLayout.
-     * @param fakeStatusBar The fake status bar view.
-     * @param color         The status bar's color.
-     * @param alpha         The status bar's alpha which isn't the same as alpha in the color.
-     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
-     */
-    public static void setStatusBarColor4Drawer(@NonNull final Activity activity,
-                                                @NonNull final DrawerLayout drawer,
-                                                @NonNull final View fakeStatusBar,
-                                                @ColorInt final int color,
-                                                @IntRange(from = 0, to = 255) final int alpha,
-                                                final boolean isTop) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-        drawer.setFitsSystemWindows(false);
-        transparentStatusBar(activity);
-        setStatusBarColor(fakeStatusBar, color, isTop ? alpha : 0);
-        for (int i = 0, len = drawer.getChildCount(); i < len; i++) {
-            drawer.getChildAt(i).setFitsSystemWindows(false);
-        }
-        if (isTop) {
-            hideAlphaView(activity);
-        } else {
-            addStatusBarAlpha(activity, alpha, false);
-        }
-    }
+//    /**
+//     * Set the status bar's alpha for DrawerLayout.
+//     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
+//     *
+//     * @param activity      The activity.
+//     * @param drawer        drawerLayout
+//     * @param fakeStatusBar The fake status bar view.
+//     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
+//     */
+//    public static void setStatusBarAlpha4Drawer(@NonNull final Activity activity,
+//                                                @NonNull final DrawerLayout drawer,
+//                                                @NonNull final View fakeStatusBar,
+//                                                final boolean isTop) {
+//        setStatusBarAlpha4Drawer(activity, drawer, fakeStatusBar, DEFAULT_ALPHA, isTop);
+//    }
 
-    /**
-     * Set the status bar's alpha for DrawerLayout.
-     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
-     *
-     * @param activity      The activity.
-     * @param drawer        drawerLayout
-     * @param fakeStatusBar The fake status bar view.
-     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
-     */
-    public static void setStatusBarAlpha4Drawer(@NonNull final Activity activity,
-                                                @NonNull final DrawerLayout drawer,
-                                                @NonNull final View fakeStatusBar,
-                                                final boolean isTop) {
-        setStatusBarAlpha4Drawer(activity, drawer, fakeStatusBar, DEFAULT_ALPHA, isTop);
-    }
-
-    /**
-     * Set the status bar's alpha for DrawerLayout.
-     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
-     *
-     * @param activity      The activity.
-     * @param drawer        drawerLayout
-     * @param fakeStatusBar The fake status bar view.
-     * @param alpha         The status bar's alpha.
-     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
-     */
-    public static void setStatusBarAlpha4Drawer(@NonNull final Activity activity,
-                                                @NonNull final DrawerLayout drawer,
-                                                @NonNull final View fakeStatusBar,
-                                                @IntRange(from = 0, to = 255) final int alpha,
-                                                final boolean isTop) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
-        drawer.setFitsSystemWindows(false);
-        transparentStatusBar(activity);
-        setStatusBarAlpha(fakeStatusBar, isTop ? alpha : 0);
-        for (int i = 0, len = drawer.getChildCount(); i < len; i++) {
-            drawer.getChildAt(i).setFitsSystemWindows(false);
-        }
-        if (isTop) {
-            hideAlphaView(activity);
-        } else {
-            addStatusBarAlpha(activity, alpha, false);
-        }
-    }
+//    /**
+//     * Set the status bar's alpha for DrawerLayout.
+//     * <p>DrawLayout must add {@code android:fitsSystemWindows="true"}</p>
+//     *
+//     * @param activity      The activity.
+//     * @param drawer        drawerLayout
+//     * @param fakeStatusBar The fake status bar view.
+//     * @param alpha         The status bar's alpha.
+//     * @param isTop         True to set DrawerLayout at the top layer, false otherwise.
+//     */
+//    public static void setStatusBarAlpha4Drawer(@NonNull final Activity activity,
+//                                                @NonNull final DrawerLayout drawer,
+//                                                @NonNull final View fakeStatusBar,
+//                                                @IntRange(from = 0, to = 255) final int alpha,
+//                                                final boolean isTop) {
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return;
+//        drawer.setFitsSystemWindows(false);
+//        transparentStatusBar(activity);
+//        setStatusBarAlpha(fakeStatusBar, isTop ? alpha : 0);
+//        for (int i = 0, len = drawer.getChildCount(); i < len; i++) {
+//            drawer.getChildAt(i).setFitsSystemWindows(false);
+//        }
+//        if (isTop) {
+//            hideAlphaView(activity);
+//        } else {
+//            addStatusBarAlpha(activity, alpha, false);
+//        }
+//    }
 
     private static void addStatusBarColor(final Activity activity,
                                           final int color,

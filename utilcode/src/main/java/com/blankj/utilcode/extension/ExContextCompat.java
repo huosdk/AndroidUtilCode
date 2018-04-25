@@ -26,22 +26,8 @@ import android.util.TypedValue;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
-import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.res.ColorStateList;
-import android.os.Bundle;
 import android.os.Process;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
-import android.support.v4.os.EnvironmentCompat;
-import android.util.Log;
-
-import java.io.File;
-
 /**
  * Helper for accessing features in {@link android.content.Context}.
  */

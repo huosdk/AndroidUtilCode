@@ -14,14 +14,11 @@ import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.FloatRange;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.Layout.Alignment;
 import android.text.SpannableStringBuilder;
@@ -203,7 +200,7 @@ public final class SpanUtils {
      * @param color The color of foreground
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setForegroundColor(@ColorInt final int color) {
+    public SpanUtils setForegroundColor( final int color) {
         this.foregroundColor = color;
         return this;
     }
@@ -214,7 +211,7 @@ public final class SpanUtils {
      * @param color The color of background
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setBackgroundColor(@ColorInt final int color) {
+    public SpanUtils setBackgroundColor( final int color) {
         this.backgroundColor = color;
         return this;
     }
@@ -254,7 +251,7 @@ public final class SpanUtils {
      * @param color The color of quote
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setQuoteColor(@ColorInt final int color) {
+    public SpanUtils setQuoteColor( final int color) {
         return setQuoteColor(color, 2, 2);
     }
 
@@ -266,7 +263,7 @@ public final class SpanUtils {
      * @param gapWidth    The width of gap, in pixel.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setQuoteColor(@ColorInt final int color,
+    public SpanUtils setQuoteColor( final int color,
                                    @IntRange(from = 1) final int stripeWidth,
                                    @IntRange(from = 0) final int gapWidth) {
         this.quoteColor = color;
@@ -307,7 +304,7 @@ public final class SpanUtils {
      * @param gapWidth The width of gap, in pixel.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setBullet(@ColorInt final int color,
+    public SpanUtils setBullet( final int color,
                                @IntRange(from = 0) final int radius,
                                @IntRange(from = 0) final int gapWidth) {
         this.bulletColor = color;
@@ -442,7 +439,7 @@ public final class SpanUtils {
      *                   </ul>
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setFontFamily(@NonNull final String fontFamily) {
+    public SpanUtils setFontFamily( final String fontFamily) {
         this.fontFamily = fontFamily;
         return this;
     }
@@ -453,7 +450,7 @@ public final class SpanUtils {
      * @param typeface The typeface.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setTypeface(@NonNull final Typeface typeface) {
+    public SpanUtils setTypeface( final Typeface typeface) {
         this.typeface = typeface;
         return this;
     }
@@ -469,7 +466,7 @@ public final class SpanUtils {
      *                  </ul>
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setAlign(@NonNull final Alignment alignment) {
+    public SpanUtils setAlign( final Alignment alignment) {
         this.alignment = alignment;
         return this;
     }
@@ -481,7 +478,7 @@ public final class SpanUtils {
      * @param clickSpan The span of click.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setClickSpan(@NonNull final ClickableSpan clickSpan) {
+    public SpanUtils setClickSpan( final ClickableSpan clickSpan) {
         this.clickSpan = clickSpan;
         return this;
     }
@@ -493,7 +490,7 @@ public final class SpanUtils {
      * @param url The url.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setUrl(@NonNull final String url) {
+    public SpanUtils setUrl( final String url) {
         this.url = url;
         return this;
     }
@@ -524,7 +521,7 @@ public final class SpanUtils {
      * @param shader The shader.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setShader(@NonNull final Shader shader) {
+    public SpanUtils setShader( final Shader shader) {
         this.shader = shader;
         return this;
     }
@@ -556,7 +553,7 @@ public final class SpanUtils {
      * @param spans The spans.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils setSpans(@NonNull final Object... spans) {
+    public SpanUtils setSpans( final Object... spans) {
         if (spans.length > 0) {
             this.spans = spans;
         }
@@ -569,7 +566,7 @@ public final class SpanUtils {
      * @param text The text.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils append(@NonNull final CharSequence text) {
+    public SpanUtils append( final CharSequence text) {
         apply(mTypeCharSequence);
         mText = text;
         return this;
@@ -591,7 +588,7 @@ public final class SpanUtils {
      *
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendLine(@NonNull final CharSequence text) {
+    public SpanUtils appendLine( final CharSequence text) {
         apply(mTypeCharSequence);
         mText = text + LINE_SEPARATOR;
         return this;
@@ -603,7 +600,7 @@ public final class SpanUtils {
      * @param bitmap The bitmap of image.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Bitmap bitmap) {
+    public SpanUtils appendImage( final Bitmap bitmap) {
         return appendImage(bitmap, ALIGN_BOTTOM);
     }
 
@@ -620,7 +617,7 @@ public final class SpanUtils {
      *               </ul>
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Bitmap bitmap, @Align final int align) {
+    public SpanUtils appendImage( final Bitmap bitmap, @Align final int align) {
         apply(mTypeImage);
         this.imageBitmap = bitmap;
         this.alignImage = align;
@@ -633,7 +630,7 @@ public final class SpanUtils {
      * @param drawable The drawable of image.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Drawable drawable) {
+    public SpanUtils appendImage( final Drawable drawable) {
         return appendImage(drawable, ALIGN_BOTTOM);
     }
 
@@ -650,7 +647,7 @@ public final class SpanUtils {
      *                 </ul>
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Drawable drawable, @Align final int align) {
+    public SpanUtils appendImage( final Drawable drawable, @Align final int align) {
         apply(mTypeImage);
         this.imageDrawable = drawable;
         this.alignImage = align;
@@ -663,7 +660,7 @@ public final class SpanUtils {
      * @param uri The uri of image.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Uri uri) {
+    public SpanUtils appendImage( final Uri uri) {
         return appendImage(uri, ALIGN_BOTTOM);
     }
 
@@ -680,7 +677,7 @@ public final class SpanUtils {
      *              </ul>
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendImage(@NonNull final Uri uri, @Align final int align) {
+    public SpanUtils appendImage( final Uri uri, @Align final int align) {
         apply(mTypeImage);
         this.imageUri = uri;
         this.alignImage = align;
@@ -735,7 +732,7 @@ public final class SpanUtils {
      * @param color The color of space.
      * @return the single {@link SpanUtils} instance
      */
-    public SpanUtils appendSpace(@IntRange(from = 0) final int size, @ColorInt final int color) {
+    public SpanUtils appendSpace(@IntRange(from = 0) final int size,  final int color) {
         apply(mTypeSpace);
         spaceSize = size;
         spaceColor = color;
@@ -990,7 +987,7 @@ public final class SpanUtils {
         }
 
         @Override
-        public int getSize(@NonNull final Paint paint, final CharSequence text,
+        public int getSize( final Paint paint, final CharSequence text,
                            @IntRange(from = 0) final int start,
                            @IntRange(from = 0) final int end,
                            @Nullable final Paint.FontMetricsInt fm) {
@@ -998,11 +995,11 @@ public final class SpanUtils {
         }
 
         @Override
-        public void draw(@NonNull final Canvas canvas, final CharSequence text,
+        public void draw( final Canvas canvas, final CharSequence text,
                          @IntRange(from = 0) final int start,
                          @IntRange(from = 0) final int end,
                          final float x, final int top, final int y, final int bottom,
-                         @NonNull final Paint paint) {
+                          final Paint paint) {
             Paint.Style style = paint.getStyle();
             int color = paint.getColor();
 
@@ -1230,7 +1227,7 @@ public final class SpanUtils {
         public abstract Drawable getDrawable();
 
         @Override
-        public int getSize(@NonNull final Paint paint, final CharSequence text,
+        public int getSize( final Paint paint, final CharSequence text,
                            final int start, final int end, final Paint.FontMetricsInt fm) {
             Drawable d = getCachedDrawable();
             Rect rect = d.getBounds();
@@ -1260,9 +1257,9 @@ public final class SpanUtils {
         }
 
         @Override
-        public void draw(@NonNull final Canvas canvas, final CharSequence text,
+        public void draw( final Canvas canvas, final CharSequence text,
                          final int start, final int end, final float x,
-                         final int top, final int y, final int bottom, @NonNull final Paint paint) {
+                         final int top, final int y, final int bottom,  final Paint paint) {
             Drawable d = getCachedDrawable();
             Rect rect = d.getBounds();
             canvas.save();

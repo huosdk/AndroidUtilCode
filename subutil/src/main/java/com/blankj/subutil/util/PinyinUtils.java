@@ -1,6 +1,8 @@
 package com.blankj.subutil.util;
 
-import android.support.v4.util.SimpleArrayMap;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <pre>
@@ -127,7 +129,7 @@ public final class PinyinUtils {
     }
 
     // 多音字姓氏映射表
-    private static final SimpleArrayMap<Character, String> surnames;
+    private static final Map<Character, String> surnames;
 
     /**
      * 获取拼音对照表，对比过pinyin4j和其他方式，这样查表设计的好处就是读取快
@@ -138,7 +140,7 @@ public final class PinyinUtils {
     private static final String pinyinTable;
 
     static {
-        surnames = new SimpleArrayMap<>(35);
+        surnames = new HashMap<>(35);
         surnames.put('乐', "yue");
         surnames.put('乘', "sheng");
         surnames.put('乜', "nie");

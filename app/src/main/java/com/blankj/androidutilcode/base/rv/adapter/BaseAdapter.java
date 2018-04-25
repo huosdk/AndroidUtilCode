@@ -41,7 +41,7 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
     private OnItemClickListener     mClickListener;
     private OnItemLongClickListener mLongClickListener;
 
-    public void setData(@NonNull final List<M> data) {
+    public void setData( final List<M> data) {
         mData = data;
     }
 
@@ -117,7 +117,7 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
         return getDataSize() + getExtraViewCount();
     }
 
-    public void setEmptyView(@NonNull View emptyView) {
+    public void setEmptyView( View emptyView) {
         setView(VIEW_TYPE_EMPTY, emptyView);
     }
 
@@ -129,7 +129,7 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
         removeView(VIEW_TYPE_EMPTY);
     }
 
-    public void setHeaderView(@NonNull View headerView) {
+    public void setHeaderView( View headerView) {
         setView(VIEW_TYPE_HEADER, headerView);
     }
 
@@ -141,7 +141,7 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
         removeView(VIEW_TYPE_HEADER);
     }
 
-    public void setFooterView(@NonNull View footerView) {
+    public void setFooterView( View footerView) {
         setView(VIEW_TYPE_FOOTER, footerView);
     }
 
@@ -153,7 +153,7 @@ public abstract class BaseAdapter<M> extends RecyclerView.Adapter<BaseViewHolder
         removeView(VIEW_TYPE_FOOTER);
     }
 
-    private void setView(final int type, @NonNull final View view) {
+    private void setView(final int type,  final View view) {
         mViewArray.put(type, view);
         notifyDataSetChanged();
     }

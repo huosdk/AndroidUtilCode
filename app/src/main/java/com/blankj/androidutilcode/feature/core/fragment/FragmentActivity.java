@@ -87,7 +87,7 @@ public class FragmentActivity extends BaseActivity {
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected( MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_fragment_zero:
                     showCurrentFragment(0);

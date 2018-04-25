@@ -50,19 +50,19 @@ public abstract class BaseFragment extends Fragment
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onCreateView: ");
         setBaseView(inflater, bindLayout());
         return mContentView;
     }
 
-    protected void setBaseView(@NonNull LayoutInflater inflater, @LayoutRes int layoutId) {
+    protected void setBaseView( LayoutInflater inflater, @LayoutRes int layoutId) {
         if (layoutId <= 0) return;
         mContentView = inflater.inflate(layoutId, null);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated( View view, @Nullable Bundle savedInstanceState) {
         Log.d(TAG, "onViewCreated: ");
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
@@ -94,7 +94,7 @@ public abstract class BaseFragment extends Fragment
     }
 
     @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
+    public void onSaveInstanceState( Bundle outState) {
         Log.d(TAG, "onSaveInstanceState: ");
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());

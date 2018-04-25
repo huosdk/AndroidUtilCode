@@ -36,7 +36,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
         this(context, orientation, ContextCompat.getDrawable(context, resId));
     }
 
-    public RecycleViewDivider(Context context, int orientation, @NonNull Drawable divider) {
+    public RecycleViewDivider(Context context, int orientation,  Drawable divider) {
         setOrientation(orientation);
         mDivider = divider;
     }

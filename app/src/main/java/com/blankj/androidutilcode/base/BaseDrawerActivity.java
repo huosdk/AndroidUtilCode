@@ -29,7 +29,7 @@ public abstract class BaseDrawerActivity extends BaseActivity {
 
     NavigationView.OnNavigationItemSelectedListener mListener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        public boolean onNavigationItemSelected( MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.action_git_hub:
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Config.GITHUB)));

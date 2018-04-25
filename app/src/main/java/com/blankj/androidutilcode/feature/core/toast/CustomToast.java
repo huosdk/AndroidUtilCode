@@ -23,7 +23,7 @@ public class CustomToast {
 
     private static final Handler HANDLER = new Handler(Looper.getMainLooper());
 
-    public static void showShort(@NonNull final CharSequence text) {
+    public static void showShort( final CharSequence text) {
         show(text, Toast.LENGTH_SHORT);
     }
 
@@ -39,7 +39,7 @@ public class CustomToast {
         show(format, Toast.LENGTH_SHORT, args);
     }
 
-    public static void showLong(@NonNull final CharSequence text) {
+    public static void showLong( final CharSequence text) {
         show(text, Toast.LENGTH_LONG);
     }
 
