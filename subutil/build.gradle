@@ -28,8 +28,8 @@ android {
 }
 
 dependencies {
-    compileOnly "com.android.support:appcompat-v7:$support_version"
-    compileOnly "com.android.support:design:$support_version"
+    compile "com.android.support:support-annotations:$support_version"
+    compile "com.android.support:support-v4:19.0.1"
 
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"

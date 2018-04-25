@@ -10,7 +10,6 @@ import android.view.View;
 import com.blankj.androidutilcode.R;
 import com.blankj.androidutilcode.base.BaseBackActivity;
 import com.blankj.utilcode.util.CleanUtils;
-import com.blankj.utilcode.util.SnackbarUtils;
 
 import java.io.File;
 

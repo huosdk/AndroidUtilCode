@@ -13,8 +13,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -244,7 +242,8 @@ public final class ToastUtils {
                 final TextView tvMessage = toast.getView().findViewById(android.R.id.message);
                 int msgColor = tvMessage.getCurrentTextColor();
                 //it solve the font of toast
-                TextViewCompat.setTextAppearance(tvMessage, android.R.style.TextAppearance);
+                tvMessage.setTextAppearance(tvMessage.getContext(), android.R.style.TextAppearance);
+//                TextViewCompat.setTextAppearance(tvMessage, android.R.style.TextAppearance);
                 if (sMsgColor != COLOR_DEFAULT) {
                     tvMessage.setTextColor(sMsgColor);
                 } else {
@@ -292,7 +291,7 @@ public final class ToastUtils {
                         new PorterDuffColorFilter(sBgColor, PorterDuff.Mode.SRC_IN)
                 );
             } else {
-                ViewCompat.setBackground(toastView, new ColorDrawable(sBgColor));
+                toastView.setBackgroundDrawable(new ColorDrawable(sBgColor));
             }
         }
     }

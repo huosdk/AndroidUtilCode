@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: 'readme.gradle'
+//apply from: 'readme.gradle'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -28,12 +28,14 @@ android {
 }
 
 dependencies {
-    compileOnly "com.android.support:appcompat-v7:$support_version"
-    compileOnly "com.android.support:design:$support_version"
+//    compileOnly "com.android.support:appcompat-v7:$support_version"
+//    compileOnly "com.android.support:design:$support_version"
+    compile "com.android.support:support-annotations:$support_version"
+    compile "com.android.support:support-v4:19.0.1"
 
-    testImplementation "junit:junit:$junit_version"
-    testImplementation "org.robolectric:robolectric:$robolectric_version"
-    testImplementation "com.android.support:support-v4:$support_version"
+//    testImplementation "junit:junit:$junit_version"
+//    testImplementation "org.robolectric:robolectric:$robolectric_version"
+//    testImplementation "com.android.support:support-v4:$support_version"
 }
-apply from: "../bintrayUpload.gradle"
+//apply from: "../bintrayUpload.gradle"
 //gradle bintrayUpload
