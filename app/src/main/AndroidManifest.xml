@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.blankj.androidutilcode">
+    package="com.blankj.androidutilcode">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
@@ -39,11 +39,6 @@
 
     <!--flashlight-->
     <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-feature android:name="android.hardware.camera.flash" />
-
     <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <!--location-->
@@ -58,7 +53,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -145,6 +141,9 @@
             android:name=".feature.core.reflect.ReflectActivity"
             android:launchMode="singleTop" />
         <activity
+            android:name=".feature.core.resource.ResourceActivity"
+            android:launchMode="singleTop" />
+        <activity
             android:name=".feature.core.screen.ScreenActivity"
             android:launchMode="singleTop" />
         <activity
@@ -155,12 +154,10 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".feature.core.sp.SPActivity"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".feature.core.span.SpanActivity"
-            android:launchMode="singleTop">
-        </activity>
+            android:launchMode="singleTop" />
         <activity
             android:name=".feature.core.toast.ToastActivity"
             android:launchMode="singleTop" />
@@ -173,15 +170,30 @@
             android:name=".feature.sub.brightness.BrightnessActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".feature.sub.location.LocationActivity"
+            android:name=".feature.sub.flashlight.FlashlightActivity"
             android:launchMode="singleTop" />
         <activity
-            android:name=".feature.sub.pinyin.PinyinActivity"
+            android:name=".feature.sub.location.LocationActivity"
             android:launchMode="singleTop" />
 
         <service
             android:name=".feature.sub.location.LocationService"
             android:launchMode="singleTop" />
+
+        <activity
+            android:name=".feature.sub.meta_data.MetaDataActivity"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="activity_meta_data"
+                android:value="activity" />
+        </activity>
+        <activity
+            android:name=".feature.sub.pinyin.PinyinActivity"
+            android:launchMode="singleTop" />
+
+        <meta-data
+            android:name="app_meta_data"
+            android:value="1234" />
 
     </application>
 
