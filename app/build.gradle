@@ -36,9 +36,8 @@ android {
     }
 
     sourceSets {
-        main {
-            res.srcDirs('src/main/res', 'src/main/res_core', 'src/main/res_sub')
-        }
+        main.res.srcDirs += 'src/main/res_core'
+        main.res.srcDirs += 'src/main/res_sub'
     }
 
     lintOptions {
@@ -57,7 +56,7 @@ dependencies {
     // LeakCanary
     debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakcanary_version"
-//    implementation 'com.blankj:utilcode:1.14.0'
+//    implementation 'com.blankj:utilcode:1.15.1'
 }
 
 

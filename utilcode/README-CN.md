@@ -2,7 +2,7 @@
 
 Gradle:
 ```groovy
-implementation 'com.blankj:utilcode:1.14.0'
+implementation 'com.blankj:utilcode:1.15.1'
 ```
 
 
@@ -25,6 +25,7 @@ U needn't do anything, because I add `consumerProguardFiles 'proguard-rules.pro'
 ```
 isActivityExists               : 判断 Activity 是否存在
 startActivity                  : 启动 Activity
+startActivityForResult         : 启动 Activity 为返回结果
 startActivities                : 启动多个 Activity
 startHomeActivity              : 回到桌面
 getActivityList                : 获取 Activity 栈链表
@@ -89,20 +90,20 @@ isNavBarVisible                      : 判断导航栏是否可见
 
 * ### 缓存相关 -> [CacheUtils.java][cache.java] -> [Test][cache.test]
 ```
-getInstance    : 获取缓存实例
-put            : 缓存中写入数据
-getBytes       : 缓存中读取字节数组
-getString      : 缓存中读取 String
-getJSONObject  : 缓存中读取 JSONObject
-getJSONArray   : 缓存中读取 JSONArray
-getBitmap      : 缓存中读取 Bitmap
-getDrawable    : 缓存中读取 Drawable
-getParcelable  : 缓存中读取 Parcelable
-getSerializable: 缓存中读取 Serializable
-getCacheSize   : 获取缓存大小
-getCacheCount  : 获取缓存个数
-remove         : 根据键值移除缓存
-clear          : 清除所有缓存
+getInstance             : 获取缓存实例
+Instance.put            : 缓存中写入数据
+Instance.getBytes       : 缓存中读取字节数组
+Instance.getString      : 缓存中读取 String
+Instance.getJSONObject  : 缓存中读取 JSONObject
+Instance.getJSONArray   : 缓存中读取 JSONArray
+Instance.getBitmap      : 缓存中读取 Bitmap
+Instance.getDrawable    : 缓存中读取 Drawable
+Instance.getParcelable  : 缓存中读取 Parcelable
+Instance.getSerializable: 缓存中读取 Serializable
+Instance.getCacheSize   : 获取缓存大小
+Instance.getCacheCount  : 获取缓存个数
+Instance.remove         : 根据键值移除缓存
+Instance.clear          : 清除所有缓存
 ```
 
 * ### 清除相关 -> [CleanUtils.java][clean.java] -> [Demo][clean.demo]
@@ -328,13 +329,14 @@ getCaptureIntent                 : 获取拍照的意图
 
 * ### 键盘相关 -> [KeyboardUtils.java][keyboard.java] -> [Demo][keyboard.demo]
 ```
-showSoftInput                   : 动态显示软键盘
-hideSoftInput                   : 动态隐藏软键盘
-toggleSoftInput                 : 切换键盘显示与否状态
-isSoftInputVisible              : 判断软键盘是否可见
-registerSoftInputChangedListener: 注册软键盘改变监听器
-fixSoftInputLeaks               : 修复软键盘内存泄漏
-clickBlankArea2HideSoftInput    : 点击屏幕空白区域隐藏软键盘
+showSoftInput                     : 动态显示软键盘
+hideSoftInput                     : 动态隐藏软键盘
+toggleSoftInput                   : 切换键盘显示与否状态
+isSoftInputVisible                : 判断软键盘是否可见
+registerSoftInputChangedListener  : 注册软键盘改变监听器
+unregisterSoftInputChangedListener: 注销软键盘改变监听器
+fixSoftInputLeaks                 : 修复软键盘内存泄漏
+clickBlankArea2HideSoftInput      : 点击屏幕空白区域隐藏软键盘
 ```
 
 * ### 日志相关 -> [LogUtils.java][log.java] -> [Demo][log.demo]
@@ -468,6 +470,16 @@ getReplaceFirst: 替换正则匹配的第一部分
 getReplaceAll  : 替换所有正则匹配的部分
 ```
 
+* ### 资源相关 -> [ResourceUtils.java][resource.java] -> [Demo][resource.demo]
+```
+copyFileFromAssets: 从 assets 中拷贝文件
+readAssets2String : 从 assets 中读取字符串
+readAssets2List   : 从 assets 中按行读取字符串
+copyFileFromRaw   : 从 raw 中拷贝文件
+readRaw2String    : 从 raw 中读取字符串
+readRaw2List      : 从 raw 中按行读取字符串
+```
+
 * ### 屏幕相关 -> [ScreenUtils.java][screen.java] -> [Demo][screen.demo]
 ```
 getScreenWidth     : 获取屏幕的宽度（单位：px）
@@ -578,17 +590,17 @@ create            : 创建样式字符串
 
 * ### SP 相关 -> [SPUtils.java][sp.java] -> [Demo][sp.demo]
 ```
-getInstance: 获取 SP 实例
-put        : SP 中写入数据
-getString  : SP 中读取 String
-getInt     : SP 中读取 int
-getLong    : SP 中读取 long
-getFloat   : SP 中读取 float
-getBoolean : SP 中读取 boolean
-getAll     : SP 中获取所有键值对
-contains   : SP 中是否存在该 key
-remove     : SP 中移除该 key
-clear      : SP 中清除所有数据
+getInstance        : 获取 SP 实例
+Instance.put       : SP 中写入数据
+Instance.getString : SP 中读取 String
+Instance.getInt    : SP 中读取 int
+Instance.getLong   : SP 中读取 long
+Instance.getFloat  : SP 中读取 float
+Instance.getBoolean: SP 中读取 boolean
+Instance.getAll    : SP 中获取所有键值对
+Instance.contains  : SP 中是否存在该 key
+Instance.remove    : SP 中移除该 key
+Instance.clear     : SP 中清除所有数据
 ```
 
 * ### 字符串相关 -> [StringUtils.java][string.java] -> [Test][string.test]
@@ -743,6 +755,9 @@ getComments       : 获取压缩文件中的注释链表
 
 [regex.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/RegexUtils.java
 [regex.test]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/test/java/com/blankj/utilcode/util/RegexUtilsTest.java
+
+[resource.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ResourceUtils.java
+[resource.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/resource/ResourceActivity.java
 
 [screen.java]: https://github.com/Blankj/AndroidUtilCode/blob/master/utilcode/src/main/java/com/blankj/utilcode/util/ScreenUtils.java
 [screen.demo]: https://github.com/Blankj/AndroidUtilCode/blob/master/app/src/main/java/com/blankj/androidutilcode/feature/core/screen/ScreenActivity.java
