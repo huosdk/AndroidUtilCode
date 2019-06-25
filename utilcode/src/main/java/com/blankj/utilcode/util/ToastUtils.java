@@ -238,7 +238,9 @@ public final class ToastUtils {
             @Override
             public void run() {
                 cancel();
-                final Toast toast = Toast.makeText(Utils.getTopActivityOrApp(), text, duration);
+                //小米手机上会显示应用名，隐藏显示应用名
+                final Toast toast = Toast.makeText(Utils.getTopActivityOrApp(), null, duration);
+                toast.setText(text);
                 sWeakToast = new WeakReference<>(toast);
                 final TextView tvMessage = toast.getView().findViewById(android.R.id.message);
                 if (sMsgColor != COLOR_DEFAULT) {
